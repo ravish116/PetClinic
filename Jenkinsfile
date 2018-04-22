@@ -18,7 +18,8 @@ pipeline {
              }
          }
          stage (' package ') {
-             sh '/opt/devops/apache-maven-3.5.3/bin/mvn package'
+              steps {
+                 sh '/opt/devops/apache-maven-3.5.3/bin/mvn package'
          }
      }
 }
