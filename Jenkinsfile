@@ -1,19 +1,24 @@
-node {
-   stage('Code Checkout') {
-      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:gouthamchilakala/PetClinic.git']]])
-   }
-   
-   
-   stage('Maven compile'){
- 
-      sh "mvn clean compile"
-
-   }
-   
-   stage('Build'){
- 
-      sh "mvn package"
-
-   }
-   
- }
+pipeline {
+     agent any
+     stages {
+         stage ("checkout code") {
+             steps {
+                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ravish116/PetClinic.git']]])
+             }
+         }
+         stage ('comile') {
+             steps {
+                 sh '/opt/devops/apache-maven-3.5.3/bin/mvn compile'
+             }
+             
+         }
+         stage ('Test Cases') {
+             steps {
+                 sh '/opt/devops/apache-maven-3.5.3/bin/mvn test'
+             }
+         }
+         satge ('pakage') {
+             sh '/opt/devops/apache-maven-3.5.3/bin/mvn pakage'
+         }
+     }
+}
