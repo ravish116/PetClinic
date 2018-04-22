@@ -22,4 +22,5 @@ pipeline {
                  sh '/opt/devops/apache-maven-3.5.3/bin/mvn package'
          }
      }
+   }
 }
