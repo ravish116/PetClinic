@@ -17,7 +17,7 @@ pipeline {
                  sh '/opt/devops/apache-maven-3.5.3/bin/mvn test'
              }
          }
-         satge ('pakage') {
+         stage ('pakage') {
              sh '/opt/devops/apache-maven-3.5.3/bin/mvn pakage'
          }
      }
